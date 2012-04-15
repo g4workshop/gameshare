@@ -263,9 +263,9 @@ private:
 class G4NextPacket
 {
 public:
-    G4NextPacket():_packetId(0),_result(0){};
+    G4NextPacket():_packetId(0),_result(0),_serverIndicator(1){};
     G4NextPacket(unsigned short packetId, const char* destObject)
-    :_packetId(packetId), _result(0), _destObject(destObject){};
+    :_packetId(packetId), _result(0), _destObject(destObject), _serverIndicator(1){};
     virtual ~G4NextPacket();
 public:
     unsigned short _packetId;
@@ -287,6 +287,7 @@ public:
     bool get16(unsigned short tag, unsigned short& value);
     bool get32(unsigned short tag, unsigned int& value);
     bool gets(unsigned short tag, char*& value);
+    bool gets(unsigned short tag, std::string& value);
     bool get8s(unsigned short tag, unsigned char*& value, unsigned short& count);
     bool get16s(unsigned short tag, unsigned short*& value, unsigned short& count);
     bool get32s(unsigned short tag, unsigned int*& value, unsigned short& count);

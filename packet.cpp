@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 G4Next. All rights reserved.
 //
 
-#import "packet.h"
-#import <sys/socket.h>
-#import <string.h>
+#include "packet.h"
+#include <sys/socket.h>
+#include <string.h>
 
 ////////////////////////////////////////////////////////////////////////////////////
 //
@@ -771,6 +771,15 @@ bool G4NextPacket::gets(unsigned short tag, char*& value)
         return false;
     return tlv->gets(value);
 }
+
+bool G4NextPacket::gets(unsigned short tag, std::string& value)
+{
+    G4TLV* tlv = find(tag);
+    if(!tlv)
+        return false;
+    return tlv->gets(value);
+}
+
 
 bool G4NextPacket::get8s(unsigned short tag, unsigned char*& value, unsigned short& count)
 {
